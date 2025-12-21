@@ -771,6 +771,115 @@
             color: var(--text-secondary);
         }
 
+        /* Year range slider container */
+        .year-range-container {
+            padding: 20px 0;
+        }
+
+        .year-slider-container {
+            position: relative;
+            height: 50px;
+            margin: 20px 0 30px;
+        }
+
+        .year-track {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--border);
+            transform: translateY(-50%);
+            border-radius: 2px;
+        }
+
+        .year-track-filled {
+            position: absolute;
+            top: 50%;
+            height: 4px;
+            background: var(--primary);
+            transform: translateY(-50%);
+            border-radius: 2px;
+        }
+
+        .year-slider {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            -webkit-appearance: none;
+            background: transparent;
+            outline: none;
+            pointer-events: none;
+            z-index: 2;
+            transform: translateY(-50%);
+        }
+
+        .year-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+            pointer-events: all;
+        }
+
+        .year-slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+            pointer-events: all;
+            border: none;
+        }
+
+        .year-labels {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 25px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Select dropdown */
+        .select-container {
+            position: relative;
+            margin-top: 10px;
+        }
+
+        .select-dropdown {
+            width: 100%;
+            padding: 14px 45px 14px 15px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            color: var(--text);
+            font-size: 15px;
+            appearance: none;
+            -webkit-appearance: none;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .select-dropdown:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+        }
+
+        .select-arrow {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            font-size: 16px;
+            pointer-events: none;
+        }
+
         /* Pagination */
         .pagination {
             display: flex;
@@ -962,8 +1071,17 @@
                         <div class="filter-title">Год выпуска</div>
                         <button class="filter-clear" onclick="clearFilter('year')">Сбросить</button>
                     </div>
-                    <div class="filter-options" id="yearFilters">
-                        <!-- Year filters will be populated by JavaScript -->
+                    <div class="year-range-container">
+                        <div class="year-slider-container">
+                            <div class="year-track"></div>
+                            <div class="year-track-filled" id="yearTrackFilled"></div>
+                            <input type="range" class="year-slider" id="yearMin" min="2000" max="2025" value="2000" step="1" oninput="updateYearRange()">
+                            <input type="range" class="year-slider" id="yearMax" min="2000" max="2025" value="2025" step="1" oninput="updateYearRange()">
+                        </div>
+                        <div class="year-labels">
+                            <span id="yearMinValue">2000</span>
+                            <span id="yearMaxValue">2025</span>
+                        </div>
                     </div>
                 </div>
 
@@ -972,8 +1090,12 @@
                         <div class="filter-title">Регион</div>
                         <button class="filter-clear" onclick="clearFilter('region')">Сбросить</button>
                     </div>
-                    <div class="filter-options" id="regionFilters">
-                        <!-- Region filters will be populated by JavaScript -->
+                    <div class="select-container">
+                        <select class="select-dropdown" id="regionSelect" onchange="setRegionFilter(this.value)">
+                            <option value="">Все регионы</option>
+                            <!-- Regions will be populated by JavaScript -->
+                        </select>
+                        <div class="select-arrow">▼</div>
                     </div>
                 </div>
 
@@ -1941,6 +2063,59 @@
             { id: 'equipment', name: 'Оборудование', icon: '⚙️', count: 13 }
         ];
 
+        // Список регионов России (основные)
+        const regionsData = [
+            "Все регионы",
+            "Москва",
+            "Санкт-Петербург",
+            "Новосибирск",
+            "Екатеринбург",
+            "Казань",
+            "Нижний Новгород",
+            "Челябинск",
+            "Самара",
+            "Омск",
+            "Ростов-на-Дону",
+            "Уфа",
+            "Красноярск",
+            "Пермь",
+            "Воронеж",
+            "Волгоград",
+            "Краснодар",
+            "Саратов",
+            "Тюмень",
+            "Тольятти",
+            "Ижевск",
+            "Барнаул",
+            "Ульяновск",
+            "Иркутск",
+            "Хабаровск",
+            "Ярославль",
+            "Владивосток",
+            "Махачкала",
+            "Томск",
+            "Оренбург",
+            "Кемерово",
+            "Новокузнецк",
+            "Рязань",
+            "Астрахань",
+            "Пенза",
+            "Липецк",
+            "Киров",
+            "Чебоксары",
+            "Калининград",
+            "Курск",
+            "Улан-Удэ",
+            "Ставрополь",
+            "Сочи",
+            "Тверь",
+            "Магнитогорск",
+            "Иваново",
+            "Брянск",
+            "Белгород",
+            "Сургут"
+        ];
+
         // Состояние приложения
         let state = {
             currentView: 'catalog',
@@ -1950,6 +2125,7 @@
                 category: null,
                 maxPrice: 100000000,
                 minYear: null,
+                maxYear: null,
                 region: null
             },
             sortBy: 'default',
@@ -1981,6 +2157,7 @@
             renderSortButtons();
             renderProducts();
             updateFavoritesBadge();
+            populateRegions();
         }
 
         function updateCategoryCounts() {
@@ -2009,6 +2186,16 @@
             return price.toLocaleString('ru-RU') + ' ₽';
         }
 
+        // Заполнение списка регионов
+        function populateRegions() {
+            const regionSelect = document.getElementById('regionSelect');
+            if (regionSelect) {
+                regionSelect.innerHTML = regionsData.map(region => 
+                    `<option value="${region === 'Все регионы' ? '' : region}">${region}</option>`
+                ).join('');
+            }
+        }
+
         // Рендер категорий
         function renderCategories() {
             elements.categories.innerHTML = categoriesData.map(cat => `
@@ -2031,18 +2218,6 @@
                 if (onClickAttr) {
                     if (onClickAttr.includes(state.sortBy)) {
                         button.classList.add('active');
-                    } else if (onClickAttr.includes('setQuickFilter')) {
-                        // Проверяем быстрые фильтры
-                        const match = onClickAttr.match(/\('(\w+)',\s*(\d+)\)/);
-                        if (match) {
-                            const [_, type, value] = match;
-                            const numValue = parseInt(value);
-                            if (type === 'year' && state.filters.minYear === numValue) {
-                                button.classList.add('active');
-                            } else if (type === 'price' && state.filters.maxPrice === numValue) {
-                                button.classList.add('active');
-                            }
-                        }
                     }
                 }
             });
@@ -2133,9 +2308,11 @@
                 filtered = filtered.filter(p => p.price <= state.filters.maxPrice);
             }
             
-            // Фильтр по году
-            if (state.filters.minYear) {
-                filtered = filtered.filter(p => p.year >= state.filters.minYear);
+            // Фильтр по году (диапазон)
+            if (state.filters.minYear || state.filters.maxYear) {
+                const minYear = state.filters.minYear || 2000;
+                const maxYear = state.filters.maxYear || 2025;
+                filtered = filtered.filter(p => p.year >= minYear && p.year <= maxYear);
             }
             
             // Фильтр по региону
@@ -2224,28 +2401,6 @@
             state.sortBy = sortType;
             state.currentPage = 1;
             renderSortButtons();
-            renderProducts();
-        }
-
-        function setQuickFilter(type, value) {
-            const button = event.target;
-            const isActive = button.classList.contains('active');
-            
-            if (isActive) {
-                button.classList.remove('active');
-                if (type === 'price') state.filters.maxPrice = 100000000;
-                if (type === 'year') state.filters.minYear = null;
-            } else {
-                // Сбрасываем другие кнопки того же типа
-                const buttons = document.querySelectorAll(`.sort-btn[onclick*="setQuickFilter('${type}'"]`);
-                buttons.forEach(btn => btn.classList.remove('active'));
-                
-                button.classList.add('active');
-                if (type === 'price') state.filters.maxPrice = parseInt(value);
-                if (type === 'year') state.filters.minYear = parseInt(value);
-            }
-            
-            state.currentPage = 1;
             renderProducts();
         }
 
@@ -2489,29 +2644,36 @@
                     </button>
                 `).join('');
             
-            // Годы
-            const years = [2025, 2024, 2023, 2022, 2021, 2020];
-            const yearFilters = document.getElementById('yearFilters');
-            yearFilters.innerHTML = years.map(year => `
-                <button class="filter-option ${state.filters.minYear === year ? 'active' : ''}"
-                        onclick="setModalFilter('year', ${year})">
-                    ${year}+
-                </button>
-            `).join('');
+            // Устанавливаем значения ползунков года
+            const yearMin = document.getElementById('yearMin');
+            const yearMax = document.getElementById('yearMax');
+            const yearMinValue = document.getElementById('yearMinValue');
+            const yearMaxValue = document.getElementById('yearMaxValue');
             
-            // Регионы
-            const regions = [...new Set(productsData.map(p => {
-                const loc = p.location.split(',')[0].trim();
-                return loc.includes('г.') ? loc : loc;
-            }))].slice(0, 6);
+            // Находим минимальный и максимальный год среди продуктов
+            const years = productsData.map(p => p.year);
+            const minYear = Math.min(...years);
+            const maxYear = Math.max(...years);
             
-            const regionFilters = document.getElementById('regionFilters');
-            regionFilters.innerHTML = regions.map(region => `
-                <button class="filter-option ${state.filters.region === region ? 'active' : ''}"
-                        onclick="setModalFilter('region', '${region}')">
-                    ${region}
-                </button>
-            `).join('');
+            yearMin.min = minYear;
+            yearMax.min = minYear;
+            yearMin.max = maxYear;
+            yearMax.max = maxYear;
+            
+            // Устанавливаем значения из состояния
+            yearMin.value = state.filters.minYear || minYear;
+            yearMax.value = state.filters.maxYear || maxYear;
+            
+            yearMinValue.textContent = yearMin.value;
+            yearMaxValue.textContent = yearMax.value;
+            
+            updateYearRange();
+            
+            // Устанавливаем значение выпадающего списка регионов
+            const regionSelect = document.getElementById('regionSelect');
+            if (regionSelect) {
+                regionSelect.value = state.filters.region || '';
+            }
             
             // Цена
             const priceRange = document.getElementById('priceRange');
@@ -2520,6 +2682,37 @@
                 priceRange.value = state.filters.maxPrice;
                 priceValue.textContent = state.filters.maxPrice === 100000000 ? '100 000 000+ ₽' : formatFullPrice(state.filters.maxPrice);
             }
+        }
+
+        // Обновление ползунка диапазона года
+        function updateYearRange() {
+            const yearMin = document.getElementById('yearMin');
+            const yearMax = document.getElementById('yearMax');
+            const yearMinValue = document.getElementById('yearMinValue');
+            const yearMaxValue = document.getElementById('yearMaxValue');
+            const yearTrackFilled = document.getElementById('yearTrackFilled');
+            
+            // Убеждаемся, что минимальное значение не превышает максимальное
+            if (parseInt(yearMin.value) > parseInt(yearMax.value)) {
+                const temp = yearMin.value;
+                yearMin.value = yearMax.value;
+                yearMax.value = temp;
+            }
+            
+            yearMinValue.textContent = yearMin.value;
+            yearMaxValue.textContent = yearMax.value;
+            
+            // Обновляем заполненную область трека
+            const min = parseInt(yearMin.min);
+            const max = parseInt(yearMax.max);
+            const minVal = parseInt(yearMin.value);
+            const maxVal = parseInt(yearMax.value);
+            
+            const percent1 = ((minVal - min) / (max - min)) * 100;
+            const percent2 = ((maxVal - min) / (max - min)) * 100;
+            
+            yearTrackFilled.style.left = percent1 + '%';
+            yearTrackFilled.style.width = (percent2 - percent1) + '%';
         }
 
         function setModalFilter(filter, value) {
@@ -2539,16 +2732,38 @@
             }
         }
 
+        function setRegionFilter(value) {
+            state.filters.region = value || null;
+        }
+
         function clearFilter(filter) {
-            state.filters[filter] = null;
-            const options = document.querySelectorAll(`#${filter}Filters .filter-option`);
-            options.forEach(opt => opt.classList.remove('active'));
-            
-            if (filter === 'price') {
+            if (filter === 'category') {
+                state.filters.category = null;
+                const options = document.querySelectorAll(`#${filter}Filters .filter-option`);
+                options.forEach(opt => opt.classList.remove('active'));
+            } else if (filter === 'price') {
+                state.filters.maxPrice = 100000000;
                 const priceRange = document.getElementById('priceRange');
                 const priceValue = document.getElementById('priceValue');
                 priceRange.value = 100000000;
                 priceValue.textContent = '100 000 000+ ₽';
+            } else if (filter === 'year') {
+                state.filters.minYear = null;
+                state.filters.maxYear = null;
+                const yearMin = document.getElementById('yearMin');
+                const yearMax = document.getElementById('yearMax');
+                const years = productsData.map(p => p.year);
+                const minYear = Math.min(...years);
+                const maxYear = Math.max(...years);
+                yearMin.value = minYear;
+                yearMax.value = maxYear;
+                updateYearRange();
+            } else if (filter === 'region') {
+                state.filters.region = null;
+                const regionSelect = document.getElementById('regionSelect');
+                if (regionSelect) {
+                    regionSelect.value = '';
+                }
             }
         }
 
@@ -2558,8 +2773,32 @@
         }
 
         function applyFilters() {
+            // Получаем значения из формы фильтров
             const priceRange = document.getElementById('priceRange');
             state.filters.maxPrice = priceRange.value === '100000000' ? 100000000 : parseInt(priceRange.value);
+            
+            const yearMin = document.getElementById('yearMin');
+            const yearMax = document.getElementById('yearMax');
+            const minYearValue = parseInt(yearMin.value);
+            const maxYearValue = parseInt(yearMax.value);
+            
+            // Находим минимальный и максимальный год среди продуктов
+            const years = productsData.map(p => p.year);
+            const minYear = Math.min(...years);
+            const maxYear = Math.max(...years);
+            
+            // Если значения по умолчанию, сбрасываем фильтр
+            if (minYearValue === minYear && maxYearValue === maxYear) {
+                state.filters.minYear = null;
+                state.filters.maxYear = null;
+            } else {
+                state.filters.minYear = minYearValue;
+                state.filters.maxYear = maxYearValue;
+            }
+            
+            // Регион
+            const regionSelect = document.getElementById('regionSelect');
+            state.filters.region = regionSelect.value || null;
             
             closeFiltersModal();
             state.currentPage = 1;
