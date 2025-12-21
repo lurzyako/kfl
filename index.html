@@ -2,39 +2,2617 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="yandex-verification" content="4cccbadce55196ca" />
-    <title>vektorsk.pro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>КФЛ Лизинг | Каталог конфиската</title>
     <style>
+        :root {
+            --primary: #FFD700;
+            --primary-dark: #E6C200;
+            --secondary: #000000;
+            --secondary-light: #1A1A1A;
+            --bg: #0A0A0A;
+            --card-bg: #FFFFFF;
+            --card-dark: #1E1E1E;
+            --text: #FFFFFF;
+            --text-secondary: #CCCCCC;
+            --text-dark: #333333;
+            --success: #4CAF50;
+            --warning: #FF9800;
+            --border: rgba(255, 215, 0, 0.2);
+            --radius-lg: 20px;
+            --radius-md: 16px;
+            --radius-sm: 12px;
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 12px 48px rgba(255, 215, 0, 0.15);
+            --gradient: linear-gradient(135deg, #FFD700 0%, #FFC300 100%);
+            --gradient-dark: linear-gradient(135deg, #1A1A1A 0%, #000000 100%);
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
         }
-        
+
         body {
-            min-height: 100vh;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.5;
+            font-size: 15px;
+            overflow-x: hidden;
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: var(--secondary);
+            z-index: 1000;
+            padding: 0 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            gap: 15px;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .logo-container {
+            background: white;
+            padding: 6px;
+            border-radius: var(--radius-sm);
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
+            flex-shrink: 0;
         }
-        
-        .content {
+
+        .logo {
+            height: 28px;
+            width: auto;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+
+        .logo-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            line-height: 1.2;
+        }
+
+        .logo-subtitle {
+            font-size: 10px;
+            color: var(--text-secondary);
+            opacity: 0.8;
+            line-height: 1.2;
+        }
+
+        /* Поиск в хедере */
+        .header-search {
+            flex: 1;
+            max-width: 400px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 45px 12px 15px;
+            background: var(--secondary-light);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            color: var(--text);
+            font-size: 14px;
+            transition: all 0.3s;
+            height: 42px;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            font-size: 18px;
+            pointer-events: none;
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid var(--border);
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            flex-shrink: 0;
+        }
+
+        .icon-btn:active {
+            transform: scale(0.95);
+            background: rgba(255, 215, 0, 0.2);
+        }
+
+        .badge {
+            position: absolute;
+            top: -4px;
+            right: -4px;
+            background: var(--primary);
+            color: var(--secondary);
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 10px;
+            min-width: 18px;
             text-align: center;
         }
-        
-        h1 {
-            font-size: 48px;
-            color: #333;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+
+        /* Main Content */
+        .main-content {
+            margin-top: 70px;
+        }
+
+        /* Sort Section */
+        .sort-section {
+            padding: 15px 20px;
+            overflow-x: auto;
+            display: flex;
+            gap: 10px;
+            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+            scrollbar-width: none;
+        }
+
+        .sort-section::-webkit-scrollbar {
+            display: none;
+        }
+
+        .sort-btn {
+            flex: 0 0 auto;
+            padding: 12px 20px;
+            background: var(--secondary-light);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            color: var(--text);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .sort-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: var(--secondary);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .sort-btn:active:not(.active) {
+            transform: scale(0.98);
+        }
+
+        /* Categories */
+        .categories {
+            padding: 15px 20px 10px;
+            overflow-x: auto;
+            display: flex;
+            gap: 10px;
+            scrollbar-width: none;
+        }
+
+        .categories::-webkit-scrollbar {
+            display: none;
+        }
+
+        .category-btn {
+            flex: 0 0 auto;
+            padding: 12px 24px;
+            background: var(--secondary-light);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            color: var(--text);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .category-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: var(--secondary);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .category-btn:active:not(.active) {
+            transform: scale(0.98);
+        }
+
+        .category-count {
+            font-size: 12px;
+            opacity: 0.7;
+        }
+
+        /* Products Grid */
+        .products-grid {
+            padding: 0 20px 100px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .products-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .product-card {
+            background: var(--secondary-light);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+            border-color: var(--primary);
+        }
+
+        .product-card:active {
+            transform: translateY(-4px);
+        }
+
+        .favorite-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            z-index: 2;
+            width: 36px;
+            height: 36px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid var(--border);
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: all 0.3s;
+        }
+
+        .favorite-btn.active {
+            background: var(--primary);
+            color: var(--secondary);
+            border-color: var(--primary);
+        }
+
+        .favorite-btn:active {
+            transform: scale(0.9);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--primary);
+        }
+
+        .product-content {
+            padding: 20px;
+        }
+
+        .product-category {
+            display: inline-block;
+            padding: 4px 10px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .product-title {
+            font-size: 17px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 10px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-details {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            line-height: 1.4;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .product-info {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .info-item i {
+            color: var(--primary);
+            font-size: 14px;
+        }
+
+        .product-price {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+
+        .product-price-note {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 14px;
+            border: none;
+            border-radius: var(--radius-md);
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn:active {
+            transform: scale(0.98);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--secondary);
+        }
+
+        .btn-primary:active {
+            background: var(--primary-dark);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text);
+        }
+
+        .btn-secondary:active {
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Footer Navigation */
+        .footer-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 70px;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 10px;
+            z-index: 1000;
+            padding-bottom: env(safe-area-inset-bottom);
+        }
+
+        .nav-item {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-item:active {
+            transform: scale(0.95);
+        }
+
+        .nav-item.active {
+            color: var(--primary);
+        }
+
+        .nav-icon {
+            font-size: 22px;
+            margin-bottom: 4px;
+            transition: all 0.3s;
+        }
+
+        .nav-item.active .nav-icon {
+            transform: translateY(-2px);
+        }
+
+        /* Modals */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.9);
+            z-index: 2000;
+            padding: 20px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background: var(--secondary-light);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            max-width: 500px;
+            margin: 20px auto;
+            animation: slideUp 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-header {
+            padding: 25px 25px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .modal-title {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .modal-close {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid var(--border);
+            color: var(--primary);
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .modal-close:active {
+            transform: scale(0.9);
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        .modal-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: var(--radius-md);
+            margin-bottom: 25px;
+            border: 1px solid var(--border);
+        }
+
+        .modal-section {
+            margin-bottom: 25px;
+        }
+
+        .modal-section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .modal-section-content {
+            font-size: 15px;
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        .modal-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .modal-tag {
+            padding: 6px 12px;
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            font-size: 13px;
+            color: var(--primary);
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        /* Loading */
+        .loading {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid var(--border);
+            border-top-color: var(--primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Empty State */
+        .empty-state {
+            text-align: center;
+            padding: 80px 20px;
+            color: var(--text-secondary);
+        }
+
+        .empty-icon {
+            font-size: 64px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        /* Filters Modal */
+        .filters-content {
+            padding: 25px;
+        }
+
+        .filter-group {
+            margin-bottom: 30px;
+        }
+
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .filter-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .filter-clear {
+            font-size: 14px;
+            color: var(--text-secondary);
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .filter-option {
+            padding: 12px 20px;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            color: var(--text);
+            font-size: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            flex: 1;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .filter-option.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: var(--secondary);
+            font-weight: 700;
+        }
+
+        .filter-option:active:not(.active) {
+            transform: scale(0.98);
+        }
+
+        .range-slider-container {
+            padding: 20px 0;
+        }
+
+        .range-slider {
+            width: 100%;
+            height: 4px;
+            -webkit-appearance: none;
+            background: var(--border);
+            border-radius: 2px;
+            outline: none;
+        }
+
+        .range-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(255, 215, 0, 0.3);
+        }
+
+        .range-values {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            font-size: 14px;
+            color: var(--text-secondary);
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            padding: 30px 20px 100px;
+            flex-wrap: wrap;
+        }
+
+        .page-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: var(--radius-md);
+            background: var(--secondary-light);
+            border: 1px solid var(--border);
+            color: var(--text);
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .page-btn.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: var(--secondary);
+        }
+
+        .page-btn:active:not(:disabled) {
+            transform: scale(0.95);
+        }
+
+        .page-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+
+        /* Price formatting */
+        .price-formatted {
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            letter-spacing: 0.5px;
         }
     </style>
 </head>
 <body>
-    <div class="content">
-        <h1>vektorsk.pro</h1>
+    <!-- Header с поиском -->
+    <header class="header">
+        <div class="logo-section">
+            <div class="logo-container">
+                <img src="https://cdn-ru.bitrix24.ru/b10013927/sender/d77/d77ed0d02b49458dc53d9493d2bf5580/588929871af43f7bef2ed69abf2cc58c.png" alt="КФЛ" class="logo">
+            </div>
+            <div class="logo-text">
+                <div class="logo-title">КФЛ Лизинг</div>
+                <div class="logo-subtitle">Каталог конфиската</div>
+            </div>
+        </div>
+
+        <!-- Поиск в хедере -->
+        <div class="header-search">
+            <input type="text" class="search-input" placeholder="Поиск..." oninput="searchProducts(this.value)">
+            <div class="search-icon">🔍</div>
+        </div>
+    </header>
+
+    <!-- Основной контент -->
+    <div class="main-content">
+        <!-- Sort Section -->
+        <section class="sort-section" id="sortSection">
+            <button class="sort-btn active" onclick="setSort('default')">
+                По умолчанию
+            </button>
+            <button class="sort-btn" onclick="setSort('price_asc')">
+                Цена ↑
+            </button>
+            <button class="sort-btn" onclick="setSort('price_desc')">
+                Цена ↓
+            </button>
+            <button class="sort-btn" onclick="setSort('year_desc')">
+                Сначала новые
+            </button>
+            <button class="sort-btn" onclick="setSort('year_asc')">
+                Сначала старые
+            </button>
+            <button class="sort-btn" onclick="openFiltersModal()" style="background: rgba(255, 215, 0, 0.1); color: var(--primary);">
+                ⚙️ Все фильтры
+            </button>
+        </section>
+
+        <!-- Categories -->
+        <nav class="categories" id="categories">
+            <!-- Categories will be populated by JavaScript -->
+        </nav>
+
+        <!-- Products Grid -->
+        <main class="products-grid" id="productsGrid">
+            <!-- Products will be populated by JavaScript -->
+        </main>
+
+        <!-- Loading -->
+        <div class="loading" id="loading">
+            <div class="loading-spinner"></div>
+            <div>Загрузка каталога...</div>
+        </div>
+
+        <!-- Empty State -->
+        <div class="empty-state" id="emptyState" style="display: none;">
+            <div class="empty-icon">🔍</div>
+            <h3>Ничего не найдено</h3>
+            <p>Попробуйте изменить параметры поиска или фильтры</p>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination" id="pagination" style="display: none;">
+            <!-- Pagination will be populated by JavaScript -->
+        </div>
     </div>
+
+    <!-- Footer Navigation -->
+    <nav class="footer-nav">
+        <button class="nav-item active" onclick="showView('catalog')">
+            <div class="nav-icon">🏠</div>
+            <div>Каталог</div>
+        </button>
+        <button class="nav-item" onclick="showView('favorites')">
+            <div class="nav-icon">❤️</div>
+            <div>Избранное</div>
+        </button>
+        <button class="nav-item" onclick="showView('contacts')">
+            <div class="nav-icon">📞</div>
+            <div>Контакты</div>
+        </button>
+        <button class="nav-item" onclick="showView('rating')">
+            <div class="nav-icon">⭐</div>
+            <div>Рейтинг</div>
+        </button>
+    </nav>
+
+    <!-- Product Modal -->
+    <div class="modal" id="productModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Детали предложения</h2>
+                <button class="modal-close" onclick="closeModal()">×</button>
+            </div>
+            <div class="modal-body" id="modalBody">
+                <!-- Modal content will be populated by JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Filters Modal -->
+    <div class="modal" id="filtersModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Фильтры</h2>
+                <button class="modal-close" onclick="closeFiltersModal()">×</button>
+            </div>
+            <div class="filters-content">
+                <div class="filter-group">
+                    <div class="filter-header">
+                        <div class="filter-title">Категория</div>
+                        <button class="filter-clear" onclick="clearFilter('category')">Сбросить</button>
+                    </div>
+                    <div class="filter-options" id="categoryFilters">
+                        <!-- Category filters will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <div class="filter-header">
+                        <div class="filter-title">Цена, ₽</div>
+                        <button class="filter-clear" onclick="clearFilter('price')">Сбросить</button>
+                    </div>
+                    <div class="range-slider-container">
+                        <input type="range" class="range-slider" id="priceRange" min="0" max="100000000" step="1000000" value="100000000" oninput="updatePriceValue(this.value)">
+                        <div class="range-values">
+                            <span>0 ₽</span>
+                            <span id="priceValue">100 000 000+ ₽</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <div class="filter-header">
+                        <div class="filter-title">Год выпуска</div>
+                        <button class="filter-clear" onclick="clearFilter('year')">Сбросить</button>
+                    </div>
+                    <div class="filter-options" id="yearFilters">
+                        <!-- Year filters will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="filter-group">
+                    <div class="filter-header">
+                        <div class="filter-title">Регион</div>
+                        <button class="filter-clear" onclick="clearFilter('region')">Сбросить</button>
+                    </div>
+                    <div class="filter-options" id="regionFilters">
+                        <!-- Region filters will be populated by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button class="btn btn-secondary" style="flex: 1;" onclick="closeFiltersModal()">
+                        Отмена
+                    </button>
+                    <button class="btn btn-primary" style="flex: 2;" onclick="applyFilters()">
+                        Применить фильтры
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contacts Modal -->
+    <div class="modal" id="contactsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Контакты</h2>
+                <button class="modal-close" onclick="closeContactsModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3 class="modal-section-title">📞 Связаться с нами</h3>
+                    <div class="modal-section-content">
+                        <p><strong>Телефон:</strong> +7 (XXX) XXX-XX-XX</p>
+                        <p><strong>Email:</strong> info@kuzfl.ru</p>
+                        <p><strong>Адрес:</strong> г. Новокузнецк</p>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3 class="modal-section-title">🕒 Часы работы</h3>
+                    <div class="modal-section-content">
+                        <p>Понедельник - Пятница: 9:00 - 18:00</p>
+                        <p>Суббота: 10:00 - 16:00</p>
+                        <p>Воскресенье: выходной</p>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <button class="btn btn-primary" onclick="makeCall()">
+                        📞 Позвонить
+                    </button>
+                    <button class="btn btn-secondary" onclick="sendEmail()">
+                        ✉️ Написать
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Rating Modal -->
+    <div class="modal" id="ratingModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">Рейтинг РА Эксперт</h2>
+                <button class="modal-close" onclick="closeRatingModal()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="modal-section">
+                    <h3 class="modal-section-title">⭐ 30 место в рейтинге</h3>
+                    <div class="modal-section-content">
+                        <p><strong>КФЛ занимает 30 место</strong> в рейтинге РА Эксперт по объему нового бизнеса в лизинге за 9 месяцев 2022 года.</p>
+                        <p>Это подтверждает наш профессионализм и надежность как лизинговой компании.</p>
+                    </div>
+                </div>
+
+                <div class="modal-section">
+                    <h3 class="modal-section-title">🏆 Наши достижения</h3>
+                    <div class="modal-section-content">
+                        <p>• Более 10 лет на рынке лизинга</p>
+                        <p>• 60+ актуальных предложений</p>
+                        <p>• 4 основные категории техники</p>
+                        <p>• Индивидуальные условия лизинга</p>
+                    </div>
+                </div>
+
+                <div class="modal-actions">
+                    <a href="https://raexpert.ru/rankingtable/leasing/9m2022/main/" target="_blank" class="btn btn-primary" style="text-decoration: none;">
+                        🌐 Смотреть рейтинг
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Инициализация Telegram WebApp
+        let tg = window.Telegram?.WebApp;
+        if (tg) {
+            tg.expand();
+            tg.enableClosingConfirmation();
+            tg.setHeaderColor('#000000');
+            tg.setBackgroundColor('#0A0A0A');
+            
+            tg.BackButton.onClick(() => {
+                if (currentModal) {
+                    closeCurrentModal();
+                    return false;
+                }
+                if (currentView !== 'catalog') {
+                    showView('catalog');
+                    return false;
+                }
+                tg.close();
+            });
+        }
+
+        // Данные продуктов (все 60 позиций)
+        const productsData = [
+            // Спецтехника (1-24)
+            {
+                id: 1,
+                title: "Экскаватор Hyundai HX520L",
+                year: 2022,
+                category: "spec",
+                image: "https://s6.auto.drom.ru/photo/v2/LdcuKYRk5-akTTO6a-0_P-dBDlFL4Q2CkgHHh5ae_uH8KTQWONbbBzI1IlLsk-MWyrcefbXAXDfxYMST/gen1200.jpg",
+                details: "Исправен, наработка 13 500 часов, ковш 3 м³",
+                location: "Новосибирская обл.",
+                price: 15500000,
+                hours: "13 500 часов",
+                engine: "Дизель",
+                link: "https://auto.drom.ru/spec/iskitim/hyundai/hx520l/excavator/mining/724764609.html",
+                discount: false
+            },
+            {
+                id: 2,
+                title: "Экскаватор CATERPILLAR 345GC",
+                year: 2021,
+                category: "spec",
+                image: "https://10.img.avito.st/image/1/1.psxa2ba4CiVsbogoGr_-yl94CCPkeIgzbHUIJ-pwAi_s.qUzbnzUxfj1PM4YrN_h-psLcupQgfSNAMAqOcDVwXi4?cqp=2.TSzMy-m0u9ojo94xoNTr4TIkcUBjMu1L_y5Z6Lr-VHA-3xfoRpsvf1jN4IBF36LEO13sxOCjYv9KRoXzpmAFvKTQ",
+                details: "Наработка 17 500 ч, ковш 2.7 м³, арктический пакет",
+                location: "г. Новокузнецк",
+                price: 7800000,
+                hours: "17 500 часов",
+                engine: "Дизель",
+                link: "https://www.avito.ru/kiselevsk/gruzoviki_i_spetstehnika/gusenichnyy_ekskavator_cat_345_gc_2021_4773696277",
+                discount: false
+            },
+            {
+                id: 3,
+                title: "Экскаватор SDIG E6400F",
+                year: 2023,
+                category: "spec",
+                image: "https://s6.auto.drom.ru/photo/v2/LmLV-8g1rl2K83vt2ViYZdftBYgIHzwQ5N4dVRPOryd1vNgaG_fLbaFuN-Et-T54C_oH4Y96lRsXZXAC/gen1200.jpg",
+                details: "Наработка 8 870 часов, объем ковша 2.2 м³",
+                location: "г. Симферополь",
+                price: 15500000,
+                hours: "8 870 часов",
+                engine: "Дизель",
+                link: "https://auto.drom.ru/spec/simferopol/sdlg/e6400f/excavator/universal/130847541.html",
+                discount: false
+            },
+            {
+                id: 4,
+                title: "Экскаватор SANY SY375H",
+                year: 2022,
+                category: "spec",
+                image: "https://s6.auto.drom.ru/photo/v2/2vY4_QlmLDzIxhjogw4cyoP1aI7e-Ks97r6IHAHHWDeERUY-KjNPqBKjMtCFfG6tq5u7u_wD3PV08BDz/gen1200.jpg",
+                details: "Наработка 13 200 часов, объем ковша 1.9 м³",
+                location: "г. Симферополь",
+                price: 12500000,
+                hours: "13 200 часов",
+                engine: "Дизель",
+                link: "https://auto.drom.ru/spec/simferopol/sany/sy375h/excavator/universal/705854193.html",
+                discount: false
+            },
+            {
+                id: 5,
+                title: "Экскаватор HYUNDAI HX300 SJ",
+                year: 2021,
+                category: "spec",
+                image: "https://40.img.avito.st/image/1/1.RaSH8La46U2xR2tAgYFx4pFR60s5UWtbsVzrTzdZ4Ucx.3Lp3xNS5WnKXXuSEfCxXonQ7AYTBECpvyvYapH6yw6M",
+                details: "Наработка 7 780 часов, ковш 1.5 м²",
+                location: "Кемеровская обл.",
+                price: 23500000,
+                hours: "7 780 часов",
+                engine: "Дизель",
+                link: "https://www.avito.ru/taksimo/gruzoviki_i_spetstehnika/gusenichnyy_ekskavator_hyundai_hx300sl_2021_4645927753",
+                discount: false
+            },
+            {
+                id: 6,
+                title: "Экскаватор-перегружатель HITACHI ZX330LC-5G",
+                year: 2021,
+                category: "spec",
+                image: "https://s6.auto.drom.ru/photo/v2/pkaAb8XNteXUYM4p7V3RgX2OkShxPy9YJtAV4lCxZTtBfSik5DdhnAdGizX_DWjd-muXOCq3fA8Ptphn/gen1200.jpg",
+                details: "Наработка 1863 часа",
+                location: "Кемеровская обл.",
+                price: 23500000,
+                hours: "1 863 часа",
+                engine: "Дизель",
+                link: "https://auto.drom.ru/spec/prokopyevsk/hitachi/zx330lc/excavator/mining/321180670.html",
+                discount: false
+            },
+            {
+                id: 7,
+                title: "Экскаватор SANY SY330H",
+                year: 2024,
+                category: "spec",
+                image: "https://00.img.avito.st/image/1/1.V3tDwba4-5J1dnmfYfxzSx9g-ZT9YHmEdW35kPNo85j1.6Lg2vpjV0XmKl0YEHQZwAS5ID3gTSqvP-1yl1Gt3WVQ?cqp=2.TSzMy-m0u9ojo94xoNTr4TIkcUBjMu1L_y5Z6Lr-VHA-3xfoRpsvf1jN4IBF36LEO13sxOCjYv9KRoXzpmAFvKTQ",
+                details: "Состояние нового, наработка 25 часов",
+                location: "г. Сургут",
+                price: 14500000,
+                hours: "25 часов",
+                engine: "Дизель",
+                link: "https://www.avito.ru/surgut/gruzoviki_i_spetstehnika/gusenichnyy_ekskavator_sany_sy330h_2024_7781380858",
+                discount: false
+            },
+            {
+                id: 8,
+                title: "Экскаватор SANY SY330H",
+                year: 2022,
+                category: "spec",
+                image: "https://10.img.avito.st/image/1/1.mONAcra4NAp2xbYHfEjhhQLTNgz-07Ycdt42CPDbPAD2.n4R8PsxrJuBuc2byIGaRaCSMAEz_fqNR2pzHQyp_vRo?cqp=2.TSzMy-m0u9ojo94xoNTr4TIkcUBjMu1L_y5Z6Lr-VHA-3xfoRpsvf1jN4IBF36LEO13sxOCjYv9KRoXzpmAFvKTQ",
+                details: "Состояние нового, наработка 25 часов",
+                location: "г. Сургут",
+                price: 14500000,
+                hours: "25 часов",
+                engine: "Дизель",
+                link: "https://www.avito.ru/surgut/gruzoviki_i_spetstehnika/gusenichnyy_ekskavator_sany_sy330h_2022_7877667793",
+                discount: false
+            },
+            {
+                id: 9,
+                title: "Буровая установка ЛИТ SD30H",
+                year: 2024,
+                category: "spec",
+                image: "https://s6.auto.drom.ru/photo/v2/9rkqwzc03AHWrfJ9heISA87W-OhfZXwTUkZSeewtMgmGRP-vgqovSXxvGiXP6xGhflqEwEfwt4lzANbu/gen1200.jpg",
+                details: "Зимнее оснащение, диаметр трубы 1500 мм",
+                location: "Республика Бурятия",
+                price: 13500000,
+                hours: "-",
+                engine: "Дизель",
+                link: "https://auto.drom.ru/spec/taksimo/jint/jint/building/drilling/817458334.html",
+                discount: false
+            },
+            {
+                id: 10,
+                title: "Буровая установка ATLAS COPCO",
+                year: 2013,
+                category: "spec",
+                image: "https://90.img.avito.st/image/1/1.ljn3lba4OtDBIrjd18fjcPs0ONZJNLjGwTk40kc8MtpB.1EldBk9ZpIhZiYup9tO0Gg7CUQD2GsqGxC8v8Lv_fyI",
+                details: "Двигатель Caterpillar C15, мощность 404 кВт",
+                location: "Кемеровская обл.",
+                price: 105000000,
+                hours: "-",
+                engine: "Дизель",
+                link: "https://www.avito.ru/kemerovskaya_oblast_mezhdurechensk/gruzoviki_i_spetstehnika/drobilno-sortirovochnoe_oborudovanie_atlas_copco_dml_2013_4869827122",
+                discount: false
+            },
+            {
+                id: 11,
+                title: "Установка ГНБ DDW36/13",
+                year: 2025,
+                category: "spec",
+                image: "https://s6.auto.drom.ru/photo/v2/I33S9Y861kjrO9ZY1DW8cwa-AfqQ1njLOwHbKVn6wdvzufYwHW1uo4ipcZBqWgFbqR-YSbZBz2__OCaT/gen1200.jpg",
+                details: "Наработка ??? часов, двигатель CUMMINS 208 л.с.",
+                location: "г. Новокузнецк",
+                price: 95000000,
+                hours: "-",
+                engine: "CUMMINS 208 л.с.",
+                link: "https://auto.drom.ru/spec/novokuznetsk/dw-txs/ddw-36-13/building/drilling/797382555.html",
+                discount: false
+            },
+            {
+                id: 12,
+                title: "Экскаватор-погрузчик CUKUROVA 884",
+                year: 2021,
+                category: "spec",
+                image: "https://s6.auto.drom.ru/photo/v2/90uKjONaW9_ltcU_8gpdIyddrbXDQGrWzQkpGeb09t2qhUW49yCxaGIg8hSSXfTqf_iKPyZyPyFkb69V/gen1200.jpg",
+                details: "Наработка 6 000 часов, двигатель Perkins 101 л.с.",
+                location: "г. Новокузнецк",
+                price: 4000000,
+                hours: "6 000 часов",
+                engine: "Perkins 101 л.с.",
+                link: "https://auto.drom.ru/spec/novokuznetsk/cukurova/884/excavator/loader/480537352.html",
+                discount: false
+            },
+            {
+                id: 13,
+                title: "Экскаватор-погрузчик Lugong CL6777A",
+                year: 2023,
+                category: "spec",
+                image: "https://s6.auto.drom.ru/photo/v2/XMEdei0mB_rBVH8n-1fFGFcIq0kOjp8cuBCTlnFZ-5JPKdtk8cdPRhn4ElFsIfFwWfqfLVElnQBkiBxn/gen1200.jpg",
+                details: "Наработка 1 500-1 700 часов, 4 единицы",
+                location: "г. Ростов-на-Дону",
+                price: 5600000,
+                hours: "1 500-1 700 часов",
+                engine: "Дизель",
+                link: "https://auto.drom.ru/spec/simferopol/liugong/777a/excavator/loader/724395333.html",
+                discount: false
+            },
+            {
+                id: 14,
+                title: "Каток дорожный Lugong CL66616E",
+                year: 2023,
+                category: "spec",
+                image: "https://s6.auto.drom.ru/photo/v2/wshUOGmcYBOl6IT_Rg9Z3AjQ1w4mXTpVZgjubQuBfM5P5Eak5lc2KvERWTR2tKX4mDHoMFh-pppQr6BQ/gen1200.jpg",
+                details: "Наработка 1 352 часа, масса 16 800 кг",
+                location: "г. Ростов-на-Дону",
+                price: 5600000,
+                hours: "1 352 часа",
+                engine: "Дизель",
+                link: "https://auto.drom.ru/spec/rostov-na-donu/liugong/clg-6616e/building/roller/339623295.html",
+                discount: false
+            },
+            {
+                id: 15,
+                title: "Вилочный погрузчик Heli CPC035",
+                year: 2023,
+                category: "spec",
+                image: "https://50.img.avito.st/image/1/1.sUPxm7a4HarHLJ-nn_XScrU6H6xPOp-8xzcfqEEyFaBH.6AhVF-y93W8Hb0Sfs3nIR4Z_pyNLIuFXnqwKH6FERlk",
+                details: "Грузоподъёмность 3 500 кг, наработка 84 часа",
+                location: "г. Москва",
+                price: 2150000,
+                hours: "84 часа",
+                engine: "Дизель",
+                link: "https://www.avito.ru/odintsovo/gruzoviki_i_spetstehnika/vilochnyy_pogruzchik_heli_cpcd35_2023_7813114421",
+                discount: false
+            },
+            {
+                id: 16,
+                title: "Вилочный погрузчик Heli CPC030",
+                year: 2023,
+                category: "spec",
+                image: "https://80.img.avito.st/image/1/1.M9PG07a4nzrwZB03rItaz5xynTx4ch0s8H-dOHZ6lzBw.rJuKfwH1Tct31u1NR3JWRUhgy5CV3eKDQnBkLFIRuLc",
+                details: "Грузоподъёмность 3 000 кг, наработка 599 часов",
+                location: "г. Красноярск",
+                price: 1800000,
+                hours: "599 часов",
+                engine: "Дизель",
+                link: "https://www.avito.ru/odintsovo/gruzoviki_i_spetstehnika/vilochnyy_pogruzchik_heli_cpcd30_2023_7813822783",
+                discount: false
+            },
+            {
+                id: 17,
+                title: "Автогрейдер LiuGong 4260D",
+                year: 2024,
+                category: "spec",
+                image: "https://s6.auto.drom.ru/photo/v2/tQF6SJooebC4oSmPRV8xmrQoHmxhaiC_8Uy8PfaoyUGN__mDECIS50_NvrD4n-EFpPhKh5gxLJ6UHQ2b/gen1200.jpg",
+                details: "Наработка 7 500 часов, двигатель Cummins 240 л.с.",
+                location: "г. Прокопьевск",
+                price: 16000000,
+                hours: "7 500 часов",
+                engine: "Cummins 240 л.с.",
+                link: "https://auto.drom.ru/spec/prokopyevsk/liugong/4260d/building/road-scraper/789666847.html",
+                discount: false
+            },
+            {
+                id: 18,
+                title: "Автогрейдер LiuGong 4260D",
+                year: 2023,
+                category: "spec",
+                image: "https://s6.auto.drom.ru/photo/v2/_7_jzi96mKI7Cmv9WclB8HmTImbzZaRIszIZcmOCxa4poyOY-DlBkVLtm68PpvdKw-jCN3aSWw6zxTSl/gen1200.jpg",
+                details: "Наработка 10 800 часов, двигатель Cummins 260 л.с.",
+                location: "г. Прокопьевск",
+                price: 13500000,
+                hours: "10 800 часов",
+                engine: "Cummins 260 л.с.",
+                link: "https://auto.drom.ru/spec/prokopyevsk/liugong/4260d/building/road-scraper/694153839.html",
+                discount: false
+            },
+            {
+                id: 19,
+                title: "Харвестер Ponsse Bear BW",
+                year: 2021,
+                category: "spec",
+                image: "https://s6.auto.drom.ru/photo/v2/jlfwcbP5btOACB0lpFdhGXJ7XlGHftQv6QQcDAymQBEZbKv6cVJi8uaUpIhweLMXC8GkmIT4iRpiCFHY/gen1200.jpg",
+                details: "Наработка 15 000 часов, техника в отличном состоянии",
+                location: "Красноярский край",
+                price: 54000000,
+                hours: "15 000 часов",
+                engine: "Дизель",
+                link: "https://auto.drom.ru/spec/bolshaya-murta/ponsse/bear/forestry/harvester/525770063.html",
+                discount: false
+            },
+            {
+                id: 20,
+                title: "Форвардер KOMATSU 895 BWD",
+                year: 2019,
+                category: "spec",
+                image: "https://50.img.avito.st/image/1/1.f-qdb7a40wOrxhEG7zookMXO0QUjzlEL68vRAS3G2wkr.F173GAbVkl_SuJHuUz0-ySQcqYKuNRMhSFN-1dG-mi0",
+                details: "Наработка 11 026 часов, нуждается в обслуживании",
+                location: "г. Красноярск",
+                price: 27000000,
+                hours: "11 026 часов",
+                engine: "Дизель",
+                link: "https://www.avito.ru/krasnoyarsk/gruzoviki_i_spetstehnika/forvarder_komatsu_895_8wd_7813747946",
+                discount: false
+            },
+            {
+                id: 21,
+                title: "Харвестер KOMATSU 951 GWD",
+                year: 2019,
+                category: "spec",
+                image: "https://30.img.avito.st/image/1/1.JGHj7ba4iIjVWgqFp7FeELtMio5dTAqe1UGKilNEgIJV.fyFIwBxFBstFgT2NvF-cdC2MaUQU53xGh5s7miCAKAM?cqp=2.TSzMy-m0u9ojo94xoNTr4TIkcUBjMu1L_y5Z6Lr-VHA-3xfoRpsvf1jN4IBF36LEO13sxOCjYv9KRoXzpmAFvKTQ",
+                details: "Наработка 11 800 часов, отсутствует харвестерная головка",
+                location: "г. Красноярск",
+                price: 27000000,
+                hours: "11 800 часов",
+                engine: "Дизель",
+                link: "https://www.avito.ru/krasnoyarsk/gruzoviki_i_spetstehnika/harvester_komatsu_951_6wd_7813113209",
+                discount: false
+            },
+            {
+                id: 22,
+                title: "Карьерный самосвал SANY SXT105S",
+                year: 2023,
+                category: "spec",
+                image: "https://s6.auto.drom.ru/photo/v2/AERiU95SmokPktcQwn-S2sHzPH5pv40UsVxSwsN497LmT2BiJ2QsbmIixBESOqOO7t_RHNWJh8Fwuinq/gen1200.jpg",
+                details: "Наработка 7 500 часов, грузоподъемность 70 т",
+                location: "Забайкальский край",
+                price: 23000000,
+                hours: "7 500 часов",
+                engine: "Дизель",
+                link: "https://auto.drom.ru/spec/krasnokamensk/sany/skt105s/truck/career/703053102.html",
+                discount: false
+            },
+            {
+                id: 23,
+                title: "Сочлененный VOLVO A40F",
+                year: 2016,
+                category: "spec",
+                image: "https://s6.auto.drom.ru/photo/v2/j3EupEUCGWOqBcZJckFdWXc35iUvfAoVXQLizTbhyDzpmQUpRcYMS9YSEb1aBeAIg7knYaL644Cdctn8/gen1200.jpg",
+                details: "Наработка 26 770 м/ч, отличное техническое состояние",
+                location: "Забайкальский край",
+                price: 27000000,
+                hours: "26 770 м/ч",
+                engine: "Дизель",
+                link: "https://auto.drom.ru/spec/krasnokamensk/volvo/a40f/truck/articulated/548856564.html",
+                discount: false
+            },
+            {
+                id: 24,
+                title: "Сочлененный VOLVO A40F",
+                year: 2010,
+                category: "spec",
+                image: "https://s6.auto.drom.ru/photo/v2/cJmbXlij8jrW6uwJKM4iHVzw46QWsXQAHCsmBF9Pnqdzg4mdPE8JvFbpCZCtnj3_qAlgjICLFY1WeGaD/gen1200.jpg",
+                details: "Наработка 50 000 м/ч, отличное техническое состояние",
+                location: "Забайкальский край",
+                price: 19000000,
+                hours: "50 000 м/ч",
+                engine: "Дизель",
+                link: "https://auto.drom.ru/spec/krasnokamensk/volvo/a35e/truck/articulated/624844091.html",
+                discount: false
+            },
+            // Грузовой транспорт (25-39)
+            {
+                id: 25,
+                title: "КМУ на шасси FAW 3250",
+                year: 2024,
+                category: "truck",
+                image: "https://s6.auto.drom.ru/photo/v2/cGUkHGLY5rIqCyGJJSTTtzyxzBqVDQwxx9ZPmlqxbi8rJu-YV9NOmnNcxLL1rLImW53FtrPT8e_0E19E/gen1200.jpg",
+                details: "Пробег 40 000 км, мощность 390 л.с., грузоподъемность 20400 кг",
+                location: "г. Симферополь",
+                price: 10700000,
+                hours: "40 000 км",
+                engine: "Дизель 390 л.с.",
+                link: "https://auto.drom.ru/spec/spb/faw/ca3250/truck/flatbed/446058572.html",
+                discount: false
+            },
+            {
+                id: 26,
+                title: "Автобетономешалка Урал 4320 NEXT",
+                year: 2024,
+                category: "truck",
+                image: "https://avatars.mds.yandex.net/get-autoru-vos/6942622/ff22790c15ddde5f9e060a9f78e7a662/1200x900",
+                details: "Пробег 12 000 км, объем бункера 6 куб.м.",
+                location: "г. Красноярск",
+                price: 5800000,
+                hours: "12 000 км",
+                engine: "Дизель",
+                link: "https://auto.drom.ru/spec/traktron/ural/4320/building/mixer/61602082_3.html",
+                discount: false
+            },
+            {
+                id: 27,
+                title: "Автокран Sany STC550T",
+                year: 2024,
+                category: "truck",
+                image: "https://s6.auto.drom.ru/photo/v2/ARX1QRQIPPYtr_v4ac0vEdB7QbN2iCjN3wnB-0D5CEcahY3oeKxlnO4PYUL14tUu4QdWSJfweiipsWit/gen1200.jpg",
+                details: "Макс. грузоподъёмность 55 т, полная масса 40 970 кг",
+                location: "г. Симферополь",
+                price: 22000000,
+                hours: "-",
+                engine: "Дизель",
+                link: "https://auto.drom.ru/spec/simferopol/sany/stc550t5/crane/crane/840034552.html",
+                discount: false
+            },
+            {
+                id: 28,
+                title: "КАМАЗ 43118 с КМУ",
+                year: 2021,
+                category: "truck",
+                image: "https://s6.auto.drom.ru/photo/v2/dMy5Y5_UhPcUXEARgTPp4hcSPvH3yWbJYcFyw96wtbsoaWnlb8FTDz7FFvJy40rPEQI3gHB0w5BnmjbR/gen1200.jpg",
+                details: "Пробег 58 000 км, двигатель 300 л.с., вездеход",
+                location: "г. Красноярск",
+                price: 6500000,
+                hours: "58 000 км",
+                engine: "Дизель 300 л.с.",
+                link: "https://auto.drom.ru/spec/krasnoyarsk/kamaz/43118/truck/loader-crane/515774097.html",
+                discount: false
+            },
+            {
+                id: 29,
+                title: "Автовышка на шасси ГАЗ 3309",
+                year: 2022,
+                category: "truck",
+                image: "https://s6.auto.drom.ru/photo/v2/4hi45zeuX1bsY1baa776fEAkyKMGlo8-s0NMZNaJEyZoW1cJpb7EBodCKHRYTu7g5nL2TzK-YWKkqyE6/gen1200.jpg",
+                details: "Грузоподъёмность 7 050 кг, вылет стрелы 19 м",
+                location: "г. Оренбург",
+                price: 1250000,
+                hours: "-",
+                engine: "Дизель",
+                link: "https://auto.drom.ru/spec/orenburg/gaz/3309/municipal/tower/90854_2022.html",
+                discount: false
+            },
+            {
+                id: 30,
+                title: "Автоцистерна КАМАЗ 65115",
+                year: 2023,
+                category: "truck",
+                image: "https://s6.auto.drom.ru/photo/v2/CsTLofWeB-41ZC_wtAp_9X5bCMT-o6MAxsd539XiZMACqcNDzpX4lKW9_OjwSNQO_1hv3y1rnHFkyCRs/gen1200.jpg",
+                details: "Пробег 46 200 км, объем 15 м³, 3 отсека",
+                location: "г. Симферополь",
+                price: 9500000,
+                hours: "46 200 км",
+                engine: "Дизель",
+                link: "https://auto.drom.ru/spec/simferopol/kamaz/65115/truck/fuel-tanker/555394116.html",
+                discount: false
+            },
+            {
+                id: 31,
+                title: "Сортиментовоз Mercedes-Benz Arocs",
+                year: 2021,
+                category: "truck",
+                image: "https://s6.auto.drom.ru/photo/v2/vODzFEHrH0x9MU0flZUUBGcVfkPx1Rk-mQLinAqmGg-dwVuwOFbzij2TeaBGsXtTReWKd6QbJ6TRj5-3/gen1200.jpg",
+                details: "Пробег 91 800 км, мощность 476 л.с.",
+                location: "г. Красноярск",
+                price: 12200000,
+                hours: "91 800 км",
+                engine: "Дизель 476 л.с.",
+                link: "https://auto.drom.ru/spec/krasnoyarsk/mercedes-benz/actros--3346/truck/timber/172071680.html",
+                discount: false
+            },
+            {
+                id: 32,
+                title: "Тягач SITRAK C7H",
+                year: 2023,
+                category: "truck",
+                image: "https://s6.auto.drom.ru/photo/v2/QLVc6rTRINJzF9dXeneMgXRPYZlh-QzQefaYXnXZXsXoIXS0DIlZGhHtIooqFtZ0iIYny-NDgAZFJzoO/gen1200.jpg",
+                details: "Пробег 71 600 км, двигатель 540 л.с.",
+                location: "г. Красноярск",
+                price: 5500000,
+                hours: "71 600 км",
+                engine: "Дизель 540 л.с.",
+                link: "https://auto.drom.ru/spec/krasnoyarsk/sitrak/c7h/truck-tractor/truck-tractor/508497279.html",
+                discount: false
+            },
+            {
+                id: 33,
+                title: "Седельный тягач SITRAK C7H MAX",
+                year: 2023,
+                category: "truck",
+                image: "https://s6.auto.drom.ru/photo/v2/FXOhzsN6LUVSiKUMuUDxWE0zefaYKjW_itd0T5-TLtn398BVXwBC9yHZ8p3cfUBXFH_WvVZt3ATYsLIO/gen1200.jpg",
+                details: "Пробег 245 000 км, двигатель 480 л.с.",
+                location: "г. Симферополь",
+                price: 5500000,
+                hours: "245 000 км",
+                engine: "Дизель 480 л.с.",
+                link: "https://auto.drom.ru/spec/simferopol/sitrak/c7h-max/truck-tractor/truck-tractor/209531234.html",
+                discount: false
+            },
+            {
+                id: 34,
+                title: "Седельный тягач Volvo FH",
+                year: 2024,
+                category: "truck",
+                image: "https://s6.auto.drom.ru/photo/v2/UKizcOBZUFnYbb8w9eGn219sgQzQbLWOY-C0pgIOvW8u_dRE-tGr4p0i88R6cav_By6RxMgRwJg5PcUV/gen1200.jpg",
+                details: "Пробег 160 000 км, мощность 510 л.с., автомат",
+                location: "г. Новосибирск",
+                price: 14500000,
+                hours: "160 000 км",
+                engine: "Дизель 510 л.с.",
+                link: "https://auto.drom.ru/spec/novosibirsk/volvo/fh/truck-tractor/truck-tractor/263140783.html",
+                discount: false
+            },
+            {
+                id: 35,
+                title: "Полуприцеп Orthaus V4",
+                year: 2024,
+                category: "truck",
+                image: "https://s6.auto.drom.ru/photo/v2/4qOKiipQJIj1PW0-yQUCLsjYig_G_b05I13o8phbeVpwp1_-V_ZBJqRFBLUmIyNDsQtONw85vEMiaoCt/gen1200.jpg",
+                details: "4 оси, шторный, грузоподъемность 39 000 кг",
+                location: "г. Новосибирск",
+                price: 4500000,
+                hours: "-",
+                engine: "-",
+                link: "https://auto.drom.ru/spec/novosibirsk/orthaus/v4/semitrailer/s-curtain/326064915.html",
+                discount: false
+            },
+            {
+                id: 36,
+                title: "Полуприцеп битумовоз Foxtank",
+                year: 2024,
+                category: "truck",
+                image: "https://90.img.avito.st/image/1/1.2NyH6ba4dDWxXvY4u56WtNZIdjM5SPYjsUV2NzdAfD8x.76I0Dd4WYBtz7FnQsMT0wRA4nsHxH5qDWaRN5e3de3Y",
+                details: "Объем 32 м³, 3 цистерны, минимальный пробег",
+                location: "г. Москва",
+                price: 4800000,
+                hours: "-",
+                engine: "-",
+                link: "https://www.avito.ru/krasnoyarsk/gruzoviki_i_spetstehnika/polupritsep_bitumovoz_foxtank_877721_2024_7749524125",
+                discount: false
+            },
+            {
+                id: 37,
+                title: "Полуприцеп-цистерна Foxtank",
+                year: 2023,
+                category: "truck",
+                image: "https://s6.auto.drom.ru/photo/v2/n9hCFT7JdpbPNCo7H8EMnBXP5TgXaROqxGJbfO9skYD9hEhOiwEXEpDkjuatjYTM9weY-_WtluiRXFSO/gen1200.jpg",
+                details: "Объем 34 м³, 5 отсеков, алюминий",
+                location: "г. Симферополь",
+                price: 4800000,
+                hours: "-",
+                engine: "-",
+                link: "https://auto.drom.ru/spec/simferopol/foxtank/877721/semitrailer/s-light-oil/558776636.html",
+                discount: false
+            },
+            {
+                id: 38,
+                title: "Полуприцеп-тяжеловоз САВ",
+                year: 2023,
+                category: "truck",
+                image: "https://30.img.avito.st/image/1/1.y_tZDra4ZxJvueUfQy2X1x6vZRTnr-UEb6JlEOmnbxjv.o4F-XNQTDRv4ghGFcDFJMpZEHErFGMD39BqiUcQrzxA?cqp=2.TSzMy-m0u9ojo94xoNTr4TIkcUBjMu1L_y5Z6Lr-VHA-3xfoRpsvf1jN4IBF36LEO13sxOCjYv9KRoXzpmAFvKTQ",
+                details: "Грузоподъёмность 50 700 кг, масса 13 300 кг",
+                location: "г. Красноярск",
+                price: 4700000,
+                hours: "-",
+                engine: "-",
+                link: "https://www.avito.ru/krasnoyarsk/gruzoviki_i_spetstehnika/polupritsep_bortovoy_maz_938662-025_2023_7845230015",
+                discount: false
+            },
+            {
+                id: 39,
+                title: "ГАЗель БИЗНЕС с термобудкой",
+                year: 2019,
+                category: "truck",
+                image: "https://20.img.avito.st/image/1/1.myIPRba4N8s58rXGNS-SYmPkNc2x5LXdOek1yb_sP8G5.eulX5_TLc9d69rAkrzSql0yoEW9eUzIE95yQY6NmFpA?cqp=2.TSzMy-m0u9ojo94xoNTr4TIkcUBjMu1L_y5Z6Lr-VHA-3xfoRpsvf1jN4IBF36LEO13sxOCjYv9KRoXzpmAFvKTQ",
+                details: "Пробег 94 500 км, рефрижератор типа ледник",
+                location: "г. Новокузнецк",
+                price: 1000000,
+                hours: "94 500 км",
+                engine: "Бензин",
+                link: "https://www.avito.ru/novokuznetsk/gruzoviki_i_spetstehnika/gaz_gazel_3302_izotermicheskiy_2019_7621306052",
+                discount: false
+            },
+            // Легковой транспорт (40-47)
+            {
+                id: 40,
+                title: "Mercedes-Benz G-Class",
+                year: 2021,
+                category: "passenger",
+                image: "https://s6.auto.drom.ru/photo/v2/bSkDZu3Z7Jd9_zvlWufjV-FiWIBuSMmqHgWgDCJ6qmI3A69IKStI7ysrawZ73FJu9otejt053Ot9IRxa/gen1200.jpg",
+                details: "Пробег 30 000 км, дизель 2.9 л, автомат, полный привод",
+                location: "пгт. Таксимо",
+                price: 16500000,
+                hours: "30 000 км",
+                engine: "Дизель 2.9 л",
+                link: "https://auto.drom.ru/taksimo/mercedes-benz/g-class/116421158.html",
+                discount: false
+            },
+            {
+                id: 41,
+                title: "LEXUS LX 570",
+                year: 2018,
+                category: "passenger",
+                image: "https://s6.auto.drom.ru/photo/v2/9k3SOSELFz0fX2bsANHgvnL4vWMcaff6r-deso_xEKsTipjVBnd6cTMmKwVAp_y28NQsz34FeZmhgidF/gen1200.jpg",
+                details: "Пробег 104 000 км, двигатель 5.7 л, мощность 367 л.с.",
+                location: "г. Новокузнецк",
+                price: 11000000,
+                hours: "104 000 км",
+                engine: "Бензин 5.7 л",
+                link: "https://auto.drom.ru/novokuznetsk/lexus/lx570/918276601.html",
+                discount: false
+            },
+            {
+                id: 42,
+                title: "Land Rover Range Rover",
+                year: 2021,
+                category: "passenger",
+                image: "https://s6.auto.drom.ru/photo/v2/PiHjHGtnonmyNPYA-vwTxa1x6__iQXTiz5CNFCiI4BUtrc6ZhZU9KYc4fG1IiTI5yrckt925g39z-XIi/gen1200.jpg",
+                details: "Пробег 130 000 км, турбодизель 3.0 л, автомат",
+                location: "г. Екатеринбург",
+                price: 7800000,
+                hours: "130 000 км",
+                engine: "Турбодизель 3.0 л",
+                link: "https://auto.drom.ru/ekaterinburg/land_rover/range_rover/180888377.html",
+                discount: false
+            },
+            {
+                id: 43,
+                title: "Пикап JAC T6",
+                year: 2023,
+                category: "passenger",
+                image: "https://s6.auto.drom.ru/photo/v2/jZVV5hj9kdziqjgOnuaBq_-j_L5RekVpYA8C43VKzR_nt2lYcDpxT2moamGy3OiSjj1-NE-i7LggPy1T/gen1200.jpg",
+                details: "Пробег 57 000 км, 177 л.с., бензин, полный привод",
+                location: "г. Красноярск",
+                price: 800000,
+                hours: "57 000 км",
+                engine: "Бензин 177 л.с.",
+                link: "https://auto.drom.ru/krasnoyarsk/jac/t6/332044774.html",
+                discount: false
+            },
+            {
+                id: 44,
+                title: "Haval Jolion",
+                year: 2023,
+                category: "passenger",
+                image: "https://50.img.avito.st/image/1/1.NnfUs7a4mp7iBBiTtO8yWrwSmJhqEhiI4h-YnGQakpRi.JwE_4KYUAtGhySLmIMDMV7y36r9HqzLSs70BGELV1-E",
+                details: "Пробег 131 000 км, мощность 143 л.с., комплектация Comfort",
+                location: "г. Новосибирск",
+                price: 1300000,
+                hours: "131 000 км",
+                engine: "Бензин 143 л.с.",
+                link: "https://www.avito.ru/novosibirsk/avtomobili/haval_jolion_1.5_amt_2023_131_000_km_7653681781",
+                discount: false
+            },
+            {
+                id: 45,
+                title: "Mercedes-Benz V-Class",
+                year: 2018,
+                category: "passenger",
+                image: "https://s6.auto.drom.ru/photo/v2/HiKOso_U9x-Uj4gPqhFsPD4XOtXHRecyLhKZKD5PvzZyiqN7U_fHoIVZKpZ8rDkOp5mrE9A5SFgAZqKh/gen1200.jpg",
+                details: "Пробег 206 000 км, дизель 2.4 л, пневмоподвеска, премиум-аудио",
+                location: "г. Новокузнецк",
+                price: 6300000,
+                hours: "206 000 км",
+                engine: "Дизель 2.4 л",
+                link: "https://auto.drom.ru/novokuznetsk/mercedes-benz/v-class/332518316.html",
+                discount: false
+            },
+            {
+                id: 46,
+                title: "Voyah Dream",
+                year: 2023,
+                category: "passenger",
+                image: "https://s6.auto.drom.ru/photo/v2/h_Us-dFbVLzzoPJihHBvUY1D_4pnV2s2yaD-Z--eheVGNcB41VP_obFpZoskFN7cewZduwfFVk1MoPHv/gen1200.jpg",
+                details: "Пробег 83 000-105 000 км, гибрид 393 л.с., 7 мест",
+                location: "г. Москва",
+                price: 14500000,
+                hours: "83 000-105 000 км",
+                engine: "Гибрид 393 л.с.",
+                link: "https://auto.drom.ru/moscow/voyah/dreamer/542054686.html",
+                discount: false
+            },
+            {
+                id: 47,
+                title: "Chery Arrizo 8",
+                year: 2023,
+                category: "passenger",
+                image: "https://s6.auto.drom.ru/photo/v2/ZmjBn8honpwRvVZaaSzthNY7TlP5C-GMNLcxmTImekDhnwZ6nflVkMJTUjyg35YrHLVyYAd3-GCEfuzs/gen1200.jpg",
+                details: "Пробег 102 000 км, 1.6 л, 186 л.с., кожа, панорамная крыша",
+                location: "г. Оренбург",
+                price: 2100000,
+                hours: "102 000 км",
+                engine: "Бензин 1.6 л",
+                link: "https://auto.drom.ru/orenburg/chery/arrizo_8/617362498.html",
+                discount: false
+            },
+            // Оборудование (48-60)
+            {
+                id: 48,
+                title: "Гидравлический пресс №81F-250",
+                year: 2023,
+                category: "equipment",
+                image: "https://10.img.avito.st/image/1/1.APA1Wra4rBkD7S4UOTIXkkP7rh-L-y4PA_auG4XzpBOD.tlGYkZr_0K1WGGAwPUYit6H21Mkhvq4brj249SIpe6c?cqp=2.TSzMy-m0u9ojo94xoNTr4TIkcUBjMu1L_y5Z6Lr-VHA-3xfoRpsvf1jN4IBF36LEO13sxOCjYv9KRoXzpmAFvKTQ",
+                details: "Пакетировочный пресс, Китай",
+                location: "г. Новокузнецк",
+                price: 3000000,
+                hours: "-",
+                engine: "Гидравлика",
+                link: "https://www.avito.ru/novokuznetsk/oborudovanie_dlya_biznesa/gidravlicheskiy_paketirovochnyy_press_y81f-250_7269495355",
+                discount: false
+            },
+            {
+                id: 49,
+                title: "Пескоструйная установка WP-5018",
+                year: 2023,
+                category: "equipment",
+                image: "https://30.img.avito.st/image/1/1.eRVfx7a41fxpcFfxIbYIbCpm1_rhZlfqaWvX_u9u3fbp.CSTovOZ71OLeSl0YCUor1vwE3ufe7G_dj1vbK50OVuk?cqp=2.TSzMy-m0u9ojo94xoNTr4TIkcUBjMu1L_y5Z6Lr-VHA-3xfoRpsvf1jN4IBF36LEO13sxOCjYv9KRoXzpmAFvKTQ",
+                details: "Макс. давление 500 бар, расход воды 1080 л/час",
+                location: "Алтайский край",
+                price: 2700000,
+                hours: "-",
+                engine: "Электричество",
+                link: "https://www.avito.ru/krutiha/oborudovanie_dlya_biznesa/peskostruynaya_vodnaya_ustanovka_wp-5018_7301705473",
+                discount: false
+            },
+            {
+                id: 50,
+                title: "Кран башенный GIRAFFE",
+                year: 2025,
+                category: "equipment",
+                image: "https://90.img.avito.st/image/1/1.DEIkSra4oKsS_SKmMDY4LWLroq2a6yK9EuaiqZTjqKGS.tuM4O-Oox9wcNMOignX73GYoHvETLWp5sVkhnqLeaB4",
+                details: "Макс. вылет 40 м, грузоподъёмность 10 т",
+                location: "г. Сургут",
+                price: 42000000,
+                hours: "-",
+                engine: "Электричество",
+                link: "https://www.avito.ru/surgut/oborudovanie_dlya_biznesa/bashennyy_kran_7844952581",
+                discount: false
+            },
+            {
+                id: 51,
+                title: "Линия лесопиления",
+                year: 2023,
+                category: "equipment",
+                image: "https://70.img.avito.st/image/1/1.3xSAy7a4c_22fPHwsuCbA5lqcfs-avHrtmdx_zBie_c2.XGD7_i7-WdMfsht2f39TxvsFm0-NJoTPouAz_eOviw8",
+                details: "Полный комплекс оборудования, Швеция",
+                location: "г. Томск",
+                price: 88000000,
+                hours: "-",
+                engine: "Электричество",
+                link: "https://www.avito.ru/tomsk/gotoviy_biznes/liniya_lesopileniya_4677571870",
+                discount: false
+            },
+            {
+                id: 52,
+                title: "Установка для бестраншейной прокладки УГ800",
+                year: 2024,
+                category: "equipment",
+                image: "https://20.img.avito.st/image/1/1.RzbGcra469_wxWnSxB9nFLvT6dl402nJ8N7p3Xbb49Vw.i1xmqbC3f8ycqqHY4uqtdqsJzFUb6R6O4Bz--QAafE4?cqp=2.TSzMy-m0u9ojo94xoNTr4TIkcUBjMu1L_y5Z6Lr-VHA-3xfoRpsvf1jN4IBF36LEO13sxOCjYv9KRoXzpmAFvKTQ",
+                details: "Состояние нового, для труб диаметром до 2400 мм",
+                location: "г. Красноярск",
+                price: 2500000,
+                hours: "-",
+                engine: "Дизель",
+                link: "https://www.avito.ru/taksimo/oborudovanie_dlya_biznesa/ustanovka_dlya_bestransheynoy_prokladki_truboprovoda_4646336451",
+                discount: false
+            },
+            {
+                id: 53,
+                title: "Роторный вращатель Prothreaser ROCK 150",
+                year: 2023,
+                category: "equipment",
+                image: "https://30.img.avito.st/image/1/1.zgq4Yba4YuOOyKDmqD7fPq7AYOUGwODrzsVg4QjIaukO.rdRzcgRP78kDKLeBv8peP1Wa3qJrxoRXJbp5qdxdt64?cqp=2.TSzMy-m0u9ojo94xoNTr4TIkcUBjMu1L_y5Z6Lr-VHA-3xfoRpsvf1jN4IBF36LEO13sxOCjYv9KRoXzpmAFvKTQ",
+                details: "Для экскаватора Doosan DX300, мощность 110 кВт",
+                location: "г. Красноярск",
+                price: 800000,
+                hours: "-",
+                engine: "Электричество 110 кВт",
+                link: "https://www.avito.ru/taksimo/gruzoviki_i_spetstehnika/rotornyy_vraschatel_dlya_ekskavatora_doosan_dx300_4646457246",
+                discount: false
+            },
+            {
+                id: 54,
+                title: "Удлинитель рукояти для экскаватора Doosan DX300",
+                year: 2023,
+                category: "equipment",
+                image: "https://00.img.avito.st/image/1/1.E0MUcLa4v6oixz2nPlBANlbRvayq0T28Ity9qKTZt6Ci.p5toaTZd0JF13qK5U1SJyJmVYCqRM4uBX6eMPTSotlU?cqp=2.TSzMy-m0u9ojo94xoNTr4TIkcUBjMu1L_y5Z6Lr-VHA-3xfoRpsvf1jN4IBF36LEO13sxOCjYv9KRoXzpmAFvKTQ",
+                details: "Новый, совместимость с экскаватором 20-35 т",
+                location: "г. Красноярск",
+                price: 250000,
+                hours: "-",
+                engine: "-",
+                link: "https://www.avito.ru/krasnoyarsk/zapchasti_i_aksessuary/udlinitel_rukoyati_ekskavatora_7877577769",
+                discount: false
+            },
+            {
+                id: 55,
+                title: "Силовой верхний привод DQ40BCD",
+                year: 2024,
+                category: "equipment",
+                image: "https://40.img.avito.st/image/1/1.c0f-XLa4367I612jlBUGNav93ahA_V24yPDdrE7116RI.8FpSfBwRa9dsjnS_0EbpZJusio2GS3-DaYg6FsOdlOc",
+                details: "Номинальная глубина бурения 4000 м, нагрузка 280 т",
+                location: "г. Сургут",
+                price: 85000000,
+                hours: "-",
+                engine: "Дизель",
+                link: "https://www.avito.ru/surgut/oborudovanie_dlya_biznesa/burilnaya_sistema_verhnego_privoda_7716961900",
+                discount: false
+            },
+            {
+                id: 56,
+                title: "Упаковочная машина Prostor-450",
+                year: 2022,
+                category: "equipment",
+                image: "https://90.img.avito.st/image/1/1.y50H97a4Z3QxQOV5HYiAgllWZXK5VuViMVtldrdeb36x.xyngmVj-uqSKS2_yN6VB9-2gPzdsAyZ4i7-o1FhUWbw",
+                details: "Производительность 40-110 изделий в минуту",
+                location: "г. Новокузнецк",
+                price: 450000,
+                hours: "-",
+                engine: "Электричество",
+                link: "https://www.avito.ru/novokuznetsk/oborudovanie_dlya_biznesa/gorizontalnaya_upakovochnaya_mashina_prostor-450_7749037559",
+                discount: false
+            },
+            {
+                id: 57,
+                title: "Оборудование для полевого склада",
+                year: 2024,
+                category: "equipment",
+                image: "https://60.img.avito.st/image/1/1.nenqqLa4MQDcH7MN3PqmyawJMwZUCbMW3AQzAloBOQpc.MOmtNGGdD3QJ76J28WrRzoSdzERQTJXytN6aDcvbeFY",
+                details: "Мягкие резервуары МР-НТ150Н, объем 300 куб.м.",
+                location: "г. Москва",
+                price: 3900000,
+                hours: "-",
+                engine: "-",
+                link: "https://www.avito.ru/moskva/oborudovanie_dlya_biznesa/polevoy_sklad_7845509820",
+                discount: false
+            },
+            {
+                id: 58,
+                title: "Паровой котел TEMRON SL2000",
+                year: 2022,
+                category: "equipment",
+                image: "https://60.img.avito.st/image/1/1.34Vs1La4c2xaY_FhXt_l8it1cWrSdfF6Wnhxbtx9e2ba.mXjCCEzN6vh0w3_3RM6U34wvtSm4iIt31dNGFqn5Wzk",
+                details: "Система автоматического регулирования",
+                location: "Красноярский край",
+                price: 2200000,
+                hours: "-",
+                engine: "Газ/дизель",
+                link: "https://www.avito.ru/achinsk/oborudovanie_dlya_biznesa/parovoy_kotel_temron_sl2000_7844946044",
+                discount: false
+            },
+            {
+                id: 59,
+                title: "Горелка TECHNOPLANE TF-SO 1750 T",
+                year: 2023,
+                category: "equipment",
+                image: "https://60.img.avito.st/image/1/1.SkzAcLa45qX2x2So2Hl-O4fR5KN-0WSz9tzkp3DZ7q92.RgPdfIr1Pna0f9UU47mtc1rImBDaSWDNeXkUiUejixc",
+                details: "Мощность 1750 кВт, жидкотопливная, для нефти",
+                location: "Красноярский край",
+                price: 1800000,
+                hours: "-",
+                engine: "Жидкое топливо",
+                link: "https://www.avito.ru/achinsk/oborudovanie_dlya_biznesa/gorelka_zhidikotoplivnaya_technoflame_tf_so_1750_t_7845384919",
+                discount: false
+            },
+            {
+                id: 60,
+                title: "Окрасочно-сушильная камера",
+                year: 2023,
+                category: "equipment",
+                image: "https://20.img.avito.st/image/1/1.QyWcFra478yqoW3BlnsJFNi37coit23aqrrtziy_58Yq.rmHUOfIou3p6Lu1Dmj_zv3gIheTx1S1Jd8vZkRp5K9k?cqp=2.TSzMy-m0u9ojo94xoNTr4TIkcUBjMu1L_y5Z6Lr-VHA-3xfoRpsvf1jN4IBF36LEO13sxOCjYv9KRoXzpmAFvKTQ",
+                details: "2 секции, размеры 14000x4000x4000 мм каждая",
+                location: "г. Челябинск",
+                price: 50000000,
+                hours: "-",
+                engine: "Электричество",
+                link: "https://www.avito.ru/chelyabinsk/oborudovanie_dlya_biznesa/okrasochno-sushilnaya_kamera_7876993117",
+                discount: false
+            }
+        ];
+
+        // Категории
+        const categoriesData = [
+            { id: 'all', name: 'Все', icon: '📦', count: 0 },
+            { id: 'spec', name: 'Спецтехника', icon: '🚜', count: 24 },
+            { id: 'truck', name: 'Грузовой', icon: '🚛', count: 15 },
+            { id: 'passenger', name: 'Легковой', icon: '🚗', count: 8 },
+            { id: 'equipment', name: 'Оборудование', icon: '⚙️', count: 13 }
+        ];
+
+        // Состояние приложения
+        let state = {
+            currentView: 'catalog',
+            currentCategory: 'all',
+            searchQuery: '',
+            filters: {
+                category: null,
+                maxPrice: 100000000,
+                minYear: null,
+                region: null
+            },
+            sortBy: 'default',
+            favorites: JSON.parse(localStorage.getItem('kfl_favorites') || '[]'),
+            currentPage: 1,
+            itemsPerPage: 8,
+            currentModal: null
+        };
+
+        // DOM элементы
+        const elements = {
+            categories: document.getElementById('categories'),
+            sortSection: document.getElementById('sortSection'),
+            productsGrid: document.getElementById('productsGrid'),
+            loading: document.getElementById('loading'),
+            emptyState: document.getElementById('emptyState'),
+            pagination: document.getElementById('pagination'),
+            favoritesBadge: document.getElementById('favoritesBadge')
+        };
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', function() {
+            initApp();
+        });
+
+        function initApp() {
+            updateCategoryCounts();
+            renderCategories();
+            renderSortButtons();
+            renderProducts();
+            updateFavoritesBadge();
+        }
+
+        function updateCategoryCounts() {
+            categoriesData.forEach(cat => {
+                if (cat.id === 'all') {
+                    cat.count = productsData.length;
+                } else {
+                    cat.count = productsData.filter(p => p.category === cat.id).length;
+                }
+            });
+        }
+
+        // Функция форматирования цены
+        function formatPrice(price) {
+            if (price >= 1000000) {
+                return (price / 1000000).toFixed(1) + ' млн ₽';
+            } else if (price >= 1000) {
+                return (price / 1000).toFixed(0) + ' тыс ₽';
+            } else {
+                return price.toLocaleString('ru-RU') + ' ₽';
+            }
+        }
+
+        // Функция полного форматирования цены с пробелами
+        function formatFullPrice(price) {
+            return price.toLocaleString('ru-RU') + ' ₽';
+        }
+
+        // Рендер категорий
+        function renderCategories() {
+            elements.categories.innerHTML = categoriesData.map(cat => `
+                <button class="category-btn ${state.currentCategory === cat.id ? 'active' : ''}"
+                        onclick="setCategory('${cat.id}')">
+                    ${cat.icon} ${cat.name}
+                    <span class="category-count">(${cat.count})</span>
+                </button>
+            `).join('');
+        }
+
+        // Рендер кнопок сортировки и фильтров
+        function renderSortButtons() {
+            const buttons = elements.sortSection.querySelectorAll('.sort-btn');
+            buttons.forEach(button => {
+                button.classList.remove('active');
+                
+                // Находим, какая кнопка соответствует текущей сортировке
+                const onClickAttr = button.getAttribute('onclick');
+                if (onClickAttr) {
+                    if (onClickAttr.includes(state.sortBy)) {
+                        button.classList.add('active');
+                    } else if (onClickAttr.includes('setQuickFilter')) {
+                        // Проверяем быстрые фильтры
+                        const match = onClickAttr.match(/\('(\w+)',\s*(\d+)\)/);
+                        if (match) {
+                            const [_, type, value] = match;
+                            const numValue = parseInt(value);
+                            if (type === 'year' && state.filters.minYear === numValue) {
+                                button.classList.add('active');
+                            } else if (type === 'price' && state.filters.maxPrice === numValue) {
+                                button.classList.add('active');
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+        // Рендер продуктов
+        function renderProducts() {
+            elements.loading.style.display = 'block';
+            elements.productsGrid.innerHTML = '';
+            
+            setTimeout(() => {
+                const filteredProducts = filterProducts();
+                const sortedProducts = sortProducts(filteredProducts);
+                const paginatedProducts = paginateProducts(sortedProducts);
+                
+                if (paginatedProducts.length === 0) {
+                    elements.emptyState.style.display = 'block';
+                    elements.productsGrid.style.display = 'none';
+                    elements.pagination.style.display = 'none';
+                } else {
+                    elements.emptyState.style.display = 'none';
+                    elements.productsGrid.style.display = 'grid';
+                    
+                    paginatedProducts.forEach(product => {
+                        const isFavorite = state.favorites.includes(product.id);
+                        const productCard = document.createElement('div');
+                        productCard.className = 'product-card';
+                        productCard.innerHTML = `
+                            <button class="favorite-btn ${isFavorite ? 'active' : ''}" onclick="toggleFavorite(${product.id}, event)">
+                                ${isFavorite ? '❤️' : '🤍'}
+                            </button>
+                            <img src="${product.image}" alt="${product.title}" class="product-image" onerror="this.src='https://picsum.photos/400/300?random=${product.id}'">
+                            <div class="product-content">
+                                <div class="product-category">${getCategoryName(product.category)}</div>
+                                <h3 class="product-title">${product.title}</h3>
+                                <p class="product-details">${product.details}</p>
+                                <div class="product-info">
+                                    <div class="info-item">
+                                        <i>📅</i> ${product.year}
+                                    </div>
+                                    <div class="info-item">
+                                        <i>📍</i> ${product.location}
+                                    </div>
+                                </div>
+                                <div class="product-price price-formatted">${formatFullPrice(product.price)}</div>
+                                <div class="product-price-note">с НДС</div>
+                                <div class="product-actions">
+                                    <button class="btn btn-primary" onclick="openProductModal(${product.id})">
+                                        <i>👁️</i> Подробнее
+                                    </button>
+                                    <button class="btn btn-secondary" onclick="requestLeasing(${product.id})">
+                                        <i>📝</i> Лизинг
+                                    </button>
+                                </div>
+                            </div>
+                        `;
+                        elements.productsGrid.appendChild(productCard);
+                    });
+                    
+                    renderPagination(filteredProducts.length);
+                }
+                
+                elements.loading.style.display = 'none';
+            }, 300);
+        }
+
+        // Фильтрация продуктов
+        function filterProducts() {
+            let filtered = productsData;
+            
+            // Фильтр по категории
+            if (state.currentCategory !== 'all') {
+                filtered = filtered.filter(p => p.category === state.currentCategory);
+            }
+            
+            // Фильтр по поиску
+            if (state.searchQuery) {
+                const query = state.searchQuery.toLowerCase();
+                filtered = filtered.filter(p => 
+                    p.title.toLowerCase().includes(query) ||
+                    p.details.toLowerCase().includes(query) ||
+                    p.location.toLowerCase().includes(query)
+                );
+            }
+            
+            // Фильтр по цене
+            if (state.filters.maxPrice) {
+                filtered = filtered.filter(p => p.price <= state.filters.maxPrice);
+            }
+            
+            // Фильтр по году
+            if (state.filters.minYear) {
+                filtered = filtered.filter(p => p.year >= state.filters.minYear);
+            }
+            
+            // Фильтр по региону
+            if (state.filters.region) {
+                filtered = filtered.filter(p => p.location.includes(state.filters.region));
+            }
+            
+            return filtered;
+        }
+
+        // Сортировка
+        function sortProducts(products) {
+            switch(state.sortBy) {
+                case 'price_asc':
+                    return [...products].sort((a, b) => a.price - b.price);
+                case 'price_desc':
+                    return [...products].sort((a, b) => b.price - a.price);
+                case 'year_desc':
+                    return [...products].sort((a, b) => b.year - a.year);
+                case 'year_asc':
+                    return [...products].sort((a, b) => a.year - b.year);
+                default:
+                    return products;
+            }
+        }
+
+        // Пагинация
+        function paginateProducts(products) {
+            const start = (state.currentPage - 1) * state.itemsPerPage;
+            const end = start + state.itemsPerPage;
+            return products.slice(start, end);
+        }
+
+        function renderPagination(totalItems) {
+            const totalPages = Math.ceil(totalItems / state.itemsPerPage);
+            
+            if (totalPages <= 1) {
+                elements.pagination.style.display = 'none';
+                return;
+            }
+            
+            elements.pagination.style.display = 'flex';
+            
+            let paginationHTML = `
+                <button class="page-btn" onclick="changePage(${state.currentPage - 1})" ${state.currentPage === 1 ? 'disabled' : ''}>
+                    ←
+                </button>
+            `;
+            
+            for (let i = 1; i <= totalPages; i++) {
+                if (i === 1 || i === totalPages || (i >= state.currentPage - 1 && i <= state.currentPage + 1)) {
+                    paginationHTML += `
+                        <button class="page-btn ${i === state.currentPage ? 'active' : ''}" onclick="changePage(${i})">
+                            ${i}
+                        </button>
+                    `;
+                } else if (i === state.currentPage - 2 || i === state.currentPage + 2) {
+                    paginationHTML += `<span class="page-btn" style="cursor: default; background: transparent; border: none;">...</span>`;
+                }
+            }
+            
+            paginationHTML += `
+                <button class="page-btn" onclick="changePage(${state.currentPage + 1})" ${state.currentPage === totalPages ? 'disabled' : ''}>
+                    →
+                </button>
+            `;
+            
+            elements.pagination.innerHTML = paginationHTML;
+        }
+
+        // Обработчики
+        function setCategory(categoryId) {
+            state.currentCategory = categoryId;
+            state.currentPage = 1;
+            renderCategories();
+            renderProducts();
+        }
+
+        function searchProducts(query) {
+            state.searchQuery = query;
+            state.currentPage = 1;
+            renderProducts();
+        }
+
+        function setSort(sortType) {
+            state.sortBy = sortType;
+            state.currentPage = 1;
+            renderSortButtons();
+            renderProducts();
+        }
+
+        function setQuickFilter(type, value) {
+            const button = event.target;
+            const isActive = button.classList.contains('active');
+            
+            if (isActive) {
+                button.classList.remove('active');
+                if (type === 'price') state.filters.maxPrice = 100000000;
+                if (type === 'year') state.filters.minYear = null;
+            } else {
+                // Сбрасываем другие кнопки того же типа
+                const buttons = document.querySelectorAll(`.sort-btn[onclick*="setQuickFilter('${type}'"]`);
+                buttons.forEach(btn => btn.classList.remove('active'));
+                
+                button.classList.add('active');
+                if (type === 'price') state.filters.maxPrice = parseInt(value);
+                if (type === 'year') state.filters.minYear = parseInt(value);
+            }
+            
+            state.currentPage = 1;
+            renderProducts();
+        }
+
+        function changePage(page) {
+            if (page < 1 || page > Math.ceil(filterProducts().length / state.itemsPerPage)) return;
+            state.currentPage = page;
+            renderProducts();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Избранное
+        function toggleFavorite(productId, event) {
+            if (event) event.stopPropagation();
+            
+            const index = state.favorites.indexOf(productId);
+            if (index > -1) {
+                state.favorites.splice(index, 1);
+            } else {
+                state.favorites.push(productId);
+            }
+            
+            localStorage.setItem('kfl_favorites', JSON.stringify(state.favorites));
+            updateFavoritesBadge();
+            
+            if (state.currentView === 'favorites') {
+                renderProducts();
+            }
+        }
+
+        function toggleFavoritesView() {
+            showView('favorites');
+        }
+
+        function updateFavoritesBadge() {
+            elements.favoritesBadge.textContent = state.favorites.length;
+        }
+
+        // Модальные окна
+        function openProductModal(productId) {
+            const product = productsData.find(p => p.id === productId);
+            if (!product) return;
+            
+            const isFavorite = state.favorites.includes(product.id);
+            
+            elements.modalBody.innerHTML = `
+                <img src="${product.image}" alt="${product.title}" class="modal-image" onerror="this.src='https://picsum.photos/400/300?random=${product.id}'">
+                
+                <div class="modal-section">
+                    <h3 class="modal-section-title">${product.title}</h3>
+                    <div class="modal-tags">
+                        <div class="modal-tag">${getCategoryName(product.category)}</div>
+                        <div class="modal-tag">${product.year} год</div>
+                        <div class="modal-tag">📍 ${product.location}</div>
+                    </div>
+                </div>
+                
+                <div class="modal-section">
+                    <h3 class="modal-section-title">📋 Описание</h3>
+                    <div class="modal-section-content">
+                        ${product.details}
+                    </div>
+                </div>
+                
+                <div class="modal-section">
+                    <h3 class="modal-section-title">⚙️ Характеристики</h3>
+                    <div class="modal-section-content">
+                        <p><strong>Двигатель:</strong> ${product.engine}</p>
+                        <p><strong>Наработка:</strong> ${product.hours}</p>
+                        <p><strong>Состояние:</strong> Отличное</p>
+                    </div>
+                </div>
+                
+                <div class="modal-section">
+                    <h3 class="modal-section-title">💰 Стоимость</h3>
+                    <div class="modal-section-content">
+                        <div style="font-size: 32px; font-weight: 800; color: var(--primary); margin: 10px 0;" class="price-formatted">
+                            ${formatFullPrice(product.price)}
+                        </div>
+                        <p style="color: var(--text-secondary);">с НДС, возможен лизинг</p>
+                    </div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button class="btn btn-primary" style="flex: 2;" onclick="requestLeasing(${product.id})">
+                        📝 Запросить лизинг
+                    </button>
+                    <button class="btn btn-secondary" style="flex: 1;" onclick="toggleFavorite(${product.id})">
+                        ${isFavorite ? '❤️' : '🤍'}
+                    </button>
+                </div>
+            `;
+            
+            document.getElementById('productModal').style.display = 'block';
+            state.currentModal = 'product';
+            
+            if (tg) tg.BackButton.show();
+        }
+
+        // Навигация по вкладкам
+        function showView(view) {
+            state.currentView = view;
+            state.currentCategory = 'all';
+            
+            // Обновляем активную кнопку навигации
+            document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+            event.target.closest('.nav-item').classList.add('active');
+            
+            switch(view) {
+                case 'catalog':
+                    renderProducts();
+                    break;
+                case 'favorites':
+                    showFavorites();
+                    break;
+                case 'contacts':
+                    openContactsModal();
+                    break;
+                case 'rating':
+                    openRatingModal();
+                    break;
+            }
+        }
+
+        function showFavorites() {
+            const favoriteProducts = productsData.filter(p => state.favorites.includes(p.id));
+            
+            if (favoriteProducts.length === 0) {
+                elements.productsGrid.style.display = 'none';
+                elements.emptyState.style.display = 'block';
+                elements.emptyState.innerHTML = `
+                    <div class="empty-icon">❤️</div>
+                    <h3>В избранном пока пусто</h3>
+                    <p>Добавляйте товары, нажимая на сердечко</p>
+                `;
+                elements.pagination.style.display = 'none';
+            } else {
+                elements.productsGrid.style.display = 'grid';
+                elements.emptyState.style.display = 'none';
+                elements.productsGrid.innerHTML = favoriteProducts.map(product => {
+                    const isFavorite = state.favorites.includes(product.id);
+                    return `
+                        <div class="product-card">
+                            <button class="favorite-btn active" onclick="toggleFavorite(${product.id}, event)">
+                                ❤️
+                            </button>
+                            <img src="${product.image}" alt="${product.title}" class="product-image" onerror="this.src='https://picsum.photos/400/300?random=${product.id}'">
+                            <div class="product-content">
+                                <div class="product-category">${getCategoryName(product.category)}</div>
+                                <h3 class="product-title">${product.title}</h3>
+                                <p class="product-details">${product.details}</p>
+                                <div class="product-info">
+                                    <div class="info-item">
+                                        <i>📅</i> ${product.year}
+                                    </div>
+                                    <div class="info-item">
+                                        <i>📍</i> ${product.location}
+                                    </div>
+                                </div>
+                                <div class="product-price price-formatted">${formatFullPrice(product.price)}</div>
+                                <div class="product-price-note">с НДС</div>
+                                <div class="product-actions">
+                                    <button class="btn btn-primary" onclick="openProductModal(${product.id})">
+                                        <i>👁️</i> Подробнее
+                                    </button>
+                                    <button class="btn btn-secondary" onclick="requestLeasing(${product.id})">
+                                        <i>📝</i> Лизинг
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+                elements.pagination.style.display = 'none';
+            }
+        }
+
+        // Вспомогательные функции
+        function getCategoryName(categoryId) {
+            const category = categoriesData.find(c => c.id === categoryId);
+            return category ? category.name : '';
+        }
+
+        // Закрытие модальных окон
+        function closeModal() {
+            document.getElementById('productModal').style.display = 'none';
+            state.currentModal = null;
+            if (tg) tg.BackButton.hide();
+        }
+
+        function closeCurrentModal() {
+            if (state.currentModal === 'product') closeModal();
+            if (state.currentModal === 'filters') closeFiltersModal();
+            if (state.currentModal === 'contacts') closeContactsModal();
+            if (state.currentModal === 'rating') closeRatingModal();
+        }
+
+        // Имитация действий
+        function requestLeasing(productId) {
+            const product = productsData.find(p => p.id === productId);
+            if (!product) return;
+            
+            if (tg) {
+                tg.showPopup({
+                    title: 'Заявка на лизинг',
+                    message: `Вы хотите оставить заявку на лизинг "${product.title}" за ${formatFullPrice(product.price)}?`,
+                    buttons: [
+                        { id: 'yes', type: 'ok', text: 'Да, оставить заявку' },
+                        { type: 'cancel' }
+                    ]
+                }, (buttonId) => {
+                    if (buttonId === 'yes') {
+                        tg.showAlert('Заявка отправлена! Менеджер КФЛ свяжется с вами в ближайшее время.');
+                        if (state.currentModal) closeCurrentModal();
+                    }
+                });
+            } else {
+                alert(`Заявка на лизинг "${product.title}" отправлена! С вами свяжутся в ближайшее время.`);
+                if (state.currentModal) closeCurrentModal();
+            }
+        }
+
+        // Фильтры
+        function openFiltersModal() {
+            // Заполняем фильтры
+            fillFiltersModal();
+            
+            document.getElementById('filtersModal').style.display = 'block';
+            state.currentModal = 'filters';
+            if (tg) tg.BackButton.show();
+        }
+
+        function fillFiltersModal() {
+            // Категории
+            const categoryFilters = document.getElementById('categoryFilters');
+            categoryFilters.innerHTML = categoriesData
+                .filter(cat => cat.id !== 'all')
+                .map(cat => `
+                    <button class="filter-option ${state.filters.category === cat.id ? 'active' : ''}"
+                            onclick="setModalFilter('category', '${cat.id}')">
+                        ${cat.icon} ${cat.name} (${cat.count})
+                    </button>
+                `).join('');
+            
+            // Годы
+            const years = [2025, 2024, 2023, 2022, 2021, 2020];
+            const yearFilters = document.getElementById('yearFilters');
+            yearFilters.innerHTML = years.map(year => `
+                <button class="filter-option ${state.filters.minYear === year ? 'active' : ''}"
+                        onclick="setModalFilter('year', ${year})">
+                    ${year}+
+                </button>
+            `).join('');
+            
+            // Регионы
+            const regions = [...new Set(productsData.map(p => {
+                const loc = p.location.split(',')[0].trim();
+                return loc.includes('г.') ? loc : loc;
+            }))].slice(0, 6);
+            
+            const regionFilters = document.getElementById('regionFilters');
+            regionFilters.innerHTML = regions.map(region => `
+                <button class="filter-option ${state.filters.region === region ? 'active' : ''}"
+                        onclick="setModalFilter('region', '${region}')">
+                    ${region}
+                </button>
+            `).join('');
+            
+            // Цена
+            const priceRange = document.getElementById('priceRange');
+            const priceValue = document.getElementById('priceValue');
+            if (state.filters.maxPrice) {
+                priceRange.value = state.filters.maxPrice;
+                priceValue.textContent = state.filters.maxPrice === 100000000 ? '100 000 000+ ₽' : formatFullPrice(state.filters.maxPrice);
+            }
+        }
+
+        function setModalFilter(filter, value) {
+            const option = event.target;
+            const isActive = option.classList.contains('active');
+            
+            if (isActive) {
+                state.filters[filter] = null;
+                option.classList.remove('active');
+            } else {
+                state.filters[filter] = value;
+                // Сбросить другие опции той же группы
+                option.parentNode.querySelectorAll('.filter-option').forEach(opt => {
+                    opt.classList.remove('active');
+                });
+                option.classList.add('active');
+            }
+        }
+
+        function clearFilter(filter) {
+            state.filters[filter] = null;
+            const options = document.querySelectorAll(`#${filter}Filters .filter-option`);
+            options.forEach(opt => opt.classList.remove('active'));
+            
+            if (filter === 'price') {
+                const priceRange = document.getElementById('priceRange');
+                const priceValue = document.getElementById('priceValue');
+                priceRange.value = 100000000;
+                priceValue.textContent = '100 000 000+ ₽';
+            }
+        }
+
+        function updatePriceValue(value) {
+            const price = parseInt(value);
+            document.getElementById('priceValue').textContent = price === 100000000 ? '100 000 000+ ₽' : formatFullPrice(price);
+        }
+
+        function applyFilters() {
+            const priceRange = document.getElementById('priceRange');
+            state.filters.maxPrice = priceRange.value === '100000000' ? 100000000 : parseInt(priceRange.value);
+            
+            closeFiltersModal();
+            state.currentPage = 1;
+            renderProducts();
+        }
+
+        function closeFiltersModal() {
+            document.getElementById('filtersModal').style.display = 'none';
+            state.currentModal = null;
+            if (tg) tg.BackButton.hide();
+        }
+
+        // Контакты
+        function openContactsModal() {
+            document.getElementById('contactsModal').style.display = 'block';
+            state.currentModal = 'contacts';
+            if (tg) tg.BackButton.show();
+        }
+
+        function closeContactsModal() {
+            document.getElementById('contactsModal').style.display = 'none';
+            state.currentModal = null;
+            if (tg) tg.BackButton.hide();
+        }
+
+        function makeCall() {
+            if (tg) {
+                tg.openTelegramLink('tel:+7XXXXXXXXXX');
+            } else {
+                alert('Имитация звонка: +7 (XXX) XXX-XX-XX');
+            }
+        }
+
+        function sendEmail() {
+            if (tg) {
+                tg.openTelegramLink('mailto:info@kuzfl.ru');
+            } else {
+                alert('Имитация отправки email: info@kuzfl.ru');
+            }
+        }
+
+        // Рейтинг
+        function openRatingModal() {
+            document.getElementById('ratingModal').style.display = 'block';
+            state.currentModal = 'rating';
+            if (tg) tg.BackButton.show();
+        }
+
+        function closeRatingModal() {
+            document.getElementById('ratingModal').style.display = 'none';
+            state.currentModal = null;
+            if (tg) tg.BackButton.hide();
+        }
+    </script>
 </body>
 </html>
